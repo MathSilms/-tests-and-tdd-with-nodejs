@@ -1,16 +1,23 @@
 {
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.3.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^4.42.0"
   },
   "devDependencies": {
+    "jest": "^24.1.0",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.0",
     "sucrase": "^3.15.0"
   },
   "scripts": {
-    "dev": "sucrase-node src/server.js",
-    "dev:debug": "nodemon --inspect src/server.js"
+    "dev": "sucrase-node src/server.js --ignore __testes",
+    "dev:debug": "nodemon --inspect src/server.js",
+    "start": "node src/server.js",
+    "pretest":"sequelize db:migrate ",
+    "test": "jest",
+    "posttest":" sequelize db:migrate:undo:all"
   }
 }
